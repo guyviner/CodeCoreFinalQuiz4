@@ -3,13 +3,42 @@
   <head>
     <title>Biddr</title>
     <%= csrf_meta_tags %>
-
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    
-    <%= yield %>
+    <!-- <nav class="navbar navbar-default"> -->
+      <div class="container-fluid">
+        <div class="col-sm-12">
+            <ul class="nav navbar-nav">
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "New Auction", new_auction_path %></li>
+              <li><%= link_to "All Auctions", auctions_path %></li>
+              <% if user_signed_in? %>
+              <li><%= link_to "My Bids", bids_path %></li>
+              <% end %>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <% if user_signed_in? %>
+                <li><%= link_to "Welcome #{current_user.first_name} #{current_user.last_name}!"%></li>
+                <li><%= link_to "Log Out", sessions_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Sign In", new_session_path %></li>
+                <li><button class="btn btn-default navbar-btn"><%= link_to "Sign Up", new_user_path %></button></li>
+              <% end %>
+            </ul>
+          <!-- </div> -->
+        <!-- </div> -->
+      </div>
+    </nav>
+
+    <div class="">
+  <%= alert || notice %>
+</div>
+
+<%= yield %>
+
   </body>
 </html>

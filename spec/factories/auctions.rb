@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :auction do
-    title "MyString"
-    details "MyText"
-    end_date "2016-12-05 10:41:32"
-    reserve_price 1.5
-    user nil
+    sequence(:title)     {|n| "#{Faker::Company.bs}-#{n}" }
+    sequence(:details)   {|n| "#{Faker::Lorem.paragraph}-#{n}" }
+    end_date             60.days.from_now
+    reserve_price        500
+    association :user, factory: :user
   end
 end

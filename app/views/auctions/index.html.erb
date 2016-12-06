@@ -1,0 +1,8 @@
+<h1>Auctions Index</h1>
+
+<% @auctions.each do |auction| %>
+<div class="">
+  <h3><%= link_to auction.title, auction %></h3>
+
+</div>
+<% end %>
